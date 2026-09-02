@@ -1,0 +1,97 @@
+{
+  "dataset_root": "D:\\Dproject_coop3d\\DATA\\raw\\V2X-Seq-SPD",
+  "pair_count": 10761,
+  "label_alignment_sample_pair_count": 200,
+  "timestamp_ms": {
+    "vehicle_vs_infrastructure_pointcloud": {
+      "count": 10761,
+      "min": 0.001,
+      "p50": 24.798,
+      "p90": 44.158,
+      "max": 82.934,
+      "mean": 24.78079119040981
+    },
+    "vehicle_vs_infrastructure_image": {
+      "count": 10761,
+      "min": 1.28,
+      "p50": 98.192,
+      "p90": 145.361,
+      "max": 195.28,
+      "mean": 98.84683542421709
+    },
+    "vehicle_image_vs_pointcloud": {
+      "count": 10761,
+      "min": 57.759,
+      "p50": 98.128,
+      "p90": 126.23,
+      "max": 155.793,
+      "mean": 99.93579537217731
+    },
+    "infrastructure_image_vs_pointcloud": {
+      "count": 10761,
+      "min": 0.001,
+      "p50": 6.127,
+      "p90": 14.059,
+      "max": 19.995,
+      "mean": 6.769376823715268
+    }
+  },
+  "transformation_checks": {
+    "infra_to_vehicle_rotation_det": {
+      "count": 10761,
+      "min": 0.9999987772481048,
+      "p50": 0.9999999690740524,
+      "p90": 1.00000073249621,
+      "max": 1.0000014177864367,
+      "mean": 1.000000043616946
+    },
+    "infra_to_vehicle_orthogonality_max_abs_error": {
+      "count": 10761,
+      "min": 2.447909660530101e-07,
+      "p50": 8.941290394748336e-07,
+      "p90": 1.0529808740500357e-06,
+      "max": 1.3812870343077321e-06,
+      "mean": 8.819087946100527e-07
+    }
+  },
+  "label_alignment_m": {
+    "vehicle_token_to_cooperative": {
+      "count": 2374,
+      "min": 0.0,
+      "p50": 9.999999994736442e-08,
+      "p90": 4.0000000001150227e-07,
+      "max": 7.071067811676286e-07,
+      "mean": 1.4658681209594702e-07
+    },
+    "infrastructure_token_to_cooperative_after_transform": {
+      "count": 3253,
+      "min": 9.679595053724329e-08,
+      "p50": 0.9512261299575994,
+      "p90": 2.3455205428871486,
+      "max": 6.59003330749008,
+      "mean": 1.0697607560484321
+    }
+  },
+  "visual_samples": [
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_00_veh_000009_inf_000000.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_01_veh_000605_inf_000623.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_02_veh_001407_inf_001458.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_03_veh_003492_inf_003639.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_04_veh_004846_inf_005012.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_05_veh_006121_inf_006306.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_06_veh_006695_inf_006883.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_07_veh_008561_inf_008772.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_08_veh_009693_inf_009910.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_09_veh_010264_inf_010481.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_10_veh_011423_inf_011628.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_11_veh_013201_inf_013136.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_12_veh_014898_inf_014406.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_13_veh_017225_inf_016172.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_14_veh_003011_inf_003152.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_15_veh_004129_inf_004283.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_16_veh_010612_inf_010829.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_17_veh_011614_inf_011827.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_18_veh_015524_inf_014874.png",
+    "D:\\Dproject_coop3d\\DATA\\reports\\v2x_seq_spd_visual_checks\\sample_19_veh_016927_inf_015870.png"
+  ]
+}

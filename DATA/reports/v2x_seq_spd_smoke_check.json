@@ -1,0 +1,50 @@
+{
+  "dair-v2x-v-spd": {
+    "length": 8504,
+    "sample": {
+      "frame_type": "VehFrameSPD",
+      "keys": [
+        "image_path",
+        "pointcloud_path",
+        "calib_camera_intrinsic_path",
+        "calib_lidar_to_camera_path",
+        "calib_lidar_to_novatel_path",
+        "calib_novatel_to_world_path",
+        "label_camera_std_path",
+        "label_lidar_std_path"
+      ],
+      "label_count": 15
+    }
+  },
+  "dair-v2x-i-spd": {
+    "length": 7834,
+    "sample": {
+      "frame_type": "InfFrameSPD",
+      "keys": [
+        "image_path",
+        "pointcloud_path",
+        "calib_camera_intrinsic_path",
+        "calib_virtuallidar_to_camera_path",
+        "calib_virtuallidar_to_world_path",
+        "label_camera_std_path",
+        "label_lidar_std_path",
+        "intersection_loc"
+      ],
+      "label_count": 17
+    }
+  },
+  "vic-sync-spd": {
+    "length": 7445,
+    "sample": {
+      "frame_type": "VICFrameSPD",
+      "keys": [
+        "vehicle_frame",
+        "infrastructure_frame",
+        "vehicle_sequence",
+        "infrastructure_sequence",
+        "system_error_offset"
+      ],
+      "label_count": 19
+    }
+  }
+}
