@@ -10,6 +10,8 @@
 - 已导出 `20` 组相机 + BEV 抽检图到 `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_visual_checks`
 - `vehicle-side` detection KITTI 转换已完成
 - `infrastructure-side` detection KITTI 转换已完成
+- cooperative tracking KITTI 转换已完成
+- 运行环境审计报告已生成到 `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_environment_audit.json`
 
 ## 完整性统计
 
@@ -42,6 +44,14 @@
 - `training/label_2`：`11275`
 - `training/calib`：`11275`
 - `ImageSets`：`train.txt / val.txt / trainval.txt / test.txt`
+
+### Cooperative tracking
+
+- 路径：`D:\Dproject_coop3d\DATA\processed\V2X-Seq-SPD-KITTI\cooperative`
+- `training`：`46` 个序列，`46` 个 `label_02/<seq>.txt`
+- `validation`：`21` 个序列，`21` 个 `label_02/<seq>.txt`
+- `testing`：当前无目录
+- 说明：当前 `cooperative/data_info.json` 实际只覆盖 `67` 个 train/val 序列，不包含官方 `batch_split.test` 的 `28` 个测试序列标注
 
 ## Sanity 检查
 
@@ -79,16 +89,27 @@
   - 样本类型：`VICFrameSPD`
   - 样本标签数：`19`
 
+## 环境审计
+
+- `ready_for_official_dair_eval = false`
+- 当前阻塞项：
+  - `mmdet3d` 缺失
+  - `mmdet` 缺失
+  - 当前是 `mmcv-lite 2.x`，不提供 `mmcv.runner`
+  - 本地没有官方 checkpoint
+  - 当前 `pypcd` 为旧版，和 Python 3.11 下的上游直接用法不兼容
+
 ## 新增脚本
 
 - `passage/b1_v2xseq_spd/generate_integrity_report.py`
 - `passage/b1_v2xseq_spd/generate_sanity_and_visual_checks.py`
 - `passage/b1_v2xseq_spd/convert_detection_to_kitti_win.py`
+- `passage/b1_v2xseq_spd/convert_tracking_to_kitti_win.py`
 - `passage/b1_v2xseq_spd/smoke_check_spd_dataset.py`
+- `passage/b1_v2xseq_spd/run_environment_audit.py`
 - `passage/b1_v2xseq_spd/README_stage1.md`
 
 ## 当前未覆盖
 
-- cooperative tracking 转换
 - 单端/协同模型训练与评估
 - README 中的完整训练推理命令矩阵

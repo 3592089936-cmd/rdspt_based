@@ -15,6 +15,8 @@
 - 可生成标定/同步 sanity report
 - 可导出 20 组相机框 + BEV 抽检图
 - 可在 Windows 下执行单侧 SPD detection -> KITTI 转换
+- 可在 Windows 下执行 cooperative tracking -> KITTI 转换
+- 可生成 DAIR-V2X 运行环境审计报告
 
 常用命令：
 
@@ -46,9 +48,19 @@ py -3.11 D:\Dproject_coop3d\passage\b1_v2xseq_spd\convert_detection_to_kitti_win
 py -3.11 D:\Dproject_coop3d\passage\b1_v2xseq_spd\smoke_check_spd_dataset.py
 ```
 
+```powershell
+py -3.11 D:\Dproject_coop3d\passage\b1_v2xseq_spd\convert_tracking_to_kitti_win.py
+```
+
+```powershell
+py -3.11 D:\Dproject_coop3d\passage\b1_v2xseq_spd\run_environment_audit.py
+```
+
 关键输出：
 
 - `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_integrity_report.json`
 - `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_sanity_report.json`
+- `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_environment_audit.json`
 - `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_visual_checks\`
 - `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_smoke_check.json`
+- `D:\Dproject_coop3d\DATA\processed\V2X-Seq-SPD-KITTI\cooperative\`
