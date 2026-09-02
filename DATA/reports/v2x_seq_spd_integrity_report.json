@@ -1,0 +1,68 @@
+{
+  "dataset_root": "D:\\Dproject_coop3d\\DATA\\raw\\V2X-Seq-SPD",
+  "summary": {
+    "vehicle_data_info_entries": 12252,
+    "infrastructure_data_info_entries": 11275,
+    "cooperative_data_info_entries": 10761,
+    "vehicle_image_files": 12252,
+    "vehicle_velodyne_files": 12252,
+    "infrastructure_image_files": 11275,
+    "infrastructure_velodyne_files": 11275,
+    "cooperative_label_files": 10761,
+    "vehicle_camera_label_files": 12252,
+    "vehicle_lidar_label_files": 12252,
+    "infrastructure_camera_label_files": 11275,
+    "infrastructure_lidar_label_files": 11275
+  },
+  "sequence_summary": {
+    "vehicle": {
+      "sequence_count": 67,
+      "top5": {
+        "0002": 459,
+        "0068": 300,
+        "0072": 280,
+        "0058": 250,
+        "0092": 230
+      }
+    },
+    "infrastructure": {
+      "sequence_count": 67,
+      "top5": {
+        "0002": 476,
+        "0058": 251,
+        "0092": 229,
+        "0004": 227,
+        "0005": 224
+      }
+    },
+    "cooperative_vehicle": {
+      "sequence_count": 67,
+      "top5": {
+        "0002": 452,
+        "0058": 249,
+        "0092": 223,
+        "0020": 210,
+        "0059": 209
+      }
+    },
+    "cooperative_infrastructure": {
+      "sequence_count": 67,
+      "top5": {
+        "0002": 452,
+        "0058": 249,
+        "0092": 223,
+        "0020": 210,
+        "0059": 209
+      }
+    }
+  },
+  "missing": {
+    "vehicle_missing_count": 0,
+    "infrastructure_missing_count": 0,
+    "cooperative_missing_count": 0,
+    "vehicle_examples": [],
+    "infrastructure_examples": [],
+    "cooperative_examples": []
+  },
+  "status": "ok"
+}

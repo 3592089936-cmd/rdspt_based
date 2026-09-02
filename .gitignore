@@ -1,0 +1,11 @@
+DATA/source/
+DATA/source_adb/
+DATA/raw/
+DATA/processed/V2X-Seq-SPD-KITTI/
+DATA/processed/_tmp_test_*.bin
+DAIR-V2X/
+__pycache__/
+passage/*.pdf
+*.pyc
+*.pyo
+*.pyd
