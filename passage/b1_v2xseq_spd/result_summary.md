@@ -12,6 +12,8 @@
 - `infrastructure-side` detection KITTI 转换已完成
 - cooperative tracking KITTI 转换已完成
 - 运行环境审计报告已生成到 `D:\Dproject_coop3d\DATA\reports\v2x_seq_spd_environment_audit.json`
+- 单端 `vehicle-side camera-only val` 已完成
+- cooperative `late fusion camera-only val` 已完成
 
 ## 完整性统计
 
@@ -99,6 +101,35 @@
   - 本地没有官方 checkpoint
   - 当前 `pypcd` 为旧版，和 Python 3.11 下的上游直接用法不兼容
 
+## 基线评估结果
+
+### 单端 vehicle-side camera-only val
+
+- 输出目录：`D:\Dproject_coop3d\DAIR-V2X\output\spd_single_camera_veh_val_oldstack`
+- 结果文件数：`3748 / 3748`
+- `3d AP`：
+  - `car 0.30 = 17.39`
+  - `car 0.50 = 4.13`
+  - `car 0.70 = 0.09`
+- `bev AP`：
+  - `car 0.30 = 20.24`
+  - `car 0.50 = 8.72`
+  - `car 0.70 = 0.71`
+
+### Cooperative late fusion camera-only val
+
+- 输出目录：`D:\Dproject_coop3d\DAIR-V2X\output\spd_late_fusion_camera_val_oldstack`
+- 结果文件数：`3316 / 3316`
+- `3d AP`：
+  - `car 0.30 = 33.43`
+  - `car 0.50 = 17.97`
+  - `car 0.70 = 4.51`
+- `bev AP`：
+  - `car 0.30 = 36.64`
+  - `car 0.50 = 23.10`
+  - `car 0.70 = 8.93`
+- 平均通信开销：`301.09 Bytes`
+
 ## 新增脚本
 
 - `passage/b1_v2xseq_spd/generate_integrity_report.py`
@@ -111,5 +142,5 @@
 
 ## 当前未覆盖
 
-- 单端/协同模型训练与评估
 - README 中的完整训练推理命令矩阵
+- 不少于 `20` 组 cooperative 可视化样例

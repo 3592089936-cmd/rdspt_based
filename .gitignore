@@ -4,8 +4,15 @@ DATA/raw/
 DATA/processed/V2X-Seq-SPD-KITTI/
 DATA/processed/_tmp_test_*.bin
 DAIR-V2X/
+_legacy_wheels/
+_scratch/
+_tmp_pkgcheck/
 __pycache__/
 passage/*.pdf
+passage/b1_v2xseq_spd/dataset_utils_import_status.txt
+passage/b1_v2xseq_spd/mmcv_import_status.txt
+passage/b1_v2xseq_spd/mmcv_trace.txt
+passage/b1_v2xseq_spd/probe_status.txt
 *.pyc
 *.pyo
 *.pyd

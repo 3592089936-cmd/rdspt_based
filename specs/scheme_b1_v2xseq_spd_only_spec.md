@@ -233,8 +233,8 @@ V2X-Seq-SPD/
 
 说明：
 
-- 一期默认 `LiDAR` 主导
-- 图像分支可保留为扩展接口，不阻塞一期
+- 设计上仍以 `LiDAR` 主导
+- 但当前工作区已优先验证 `camera-only` 车端单端链路，可作为一期“先跑通评估闭环”的可执行基线
 
 ### Phase 3: 协同基线
 
@@ -281,6 +281,22 @@ V2X-Seq-SPD/
 - 静默修正异常数据
 - 用手工改数据替代脚本化处理
 
+### 11.1 当前锁定运行环境
+
+为避免新版 `mmcv/mmengine` 与上游 `DAIR-V2X` 在 `SPD` 路径上的兼容性问题，一期评估链路当前锁定为官方旧栈：
+
+- Python 环境：`D:\anaconda\envs\dair38old\python.exe`
+- `torch 1.10.1+cu113`
+- `mmcv 1.4.0`
+- `mmdet 2.14.0`
+- `mmseg 0.14.1`
+- `mmdet3d 0.17.1`
+
+说明：
+
+- 新版 `mmcv 2.x` 在当前 Windows 环境下会卡在 `dataset_utils/file_io.py` 导入链路，一期不再继续兼容新版栈
+- 若后续恢复到新栈，应作为独立增强任务处理，不能反向破坏当前旧栈可运行基线
+
 ## 12. 一期交付物
 
 必须提交：
@@ -293,6 +309,28 @@ V2X-Seq-SPD/
 6. 评估结果
 7. 可视化样例
 8. 已知限制说明
+
+### 12.1 当前已落地交付物
+
+截至 `2026-09-03`，以下交付物已经在工作区内形成：
+
+1. 数据准备与完整性报告
+2. `SPD` detection / tracking 转换脚本
+3. 标定与同步 sanity report
+4. `20` 组相机 + BEV 抽检图
+5. B1 一期 README 与结果摘要
+6. 单端 `camera-only` smoke + 全量 `val` 评估证据
+7. cooperative `late fusion camera-only` smoke 证据
+8. cooperative `late fusion camera-only` 全量 `val` 在跑证据
+
+关键文件与目录：
+
+- `passage/b1_v2xseq_spd/README_stage1.md`
+- `passage/b1_v2xseq_spd/result_summary.md`
+- `passage/b1_v2xseq_spd/run_single_side_camera_smoke.py`
+- `passage/b1_v2xseq_spd/run_late_fusion_camera_smoke.py`
+- `DAIR-V2X/output/spd_single_camera_veh_val_oldstack/`
+- `DAIR-V2X/output/spd_late_fusion_camera_val_oldstack/`
 
 ## 13. 一期验收口径
 
@@ -308,6 +346,46 @@ B1 完成的判断标准是：
 - 完整通信鲁棒性实验
 - 多数据集联合对比
 - 仿真故障注入闭环
+
+### 13.1 当前验收映射
+
+以下映射基于当前工作区的真实运行状态，而不是预期状态：
+
+| 验收项 | 当前状态 | 证据 |
+| --- | --- | --- |
+| 仅依赖 `V2X-Seq-SPD` 可完成数据准备 | 已完成 | `passage/b1_v2xseq_spd/result_summary.md`、`DATA/reports/` |
+| 数据可读取、split 可用、格式转换可用 | 已完成 | 完整性报告、sanity 报告、KITTI 转换脚本与输出 |
+| 单端基线可运行 | 已完成 | `run_single_side_camera_smoke.py` 已跑通 |
+| 单端全量评估可输出结果 | 已完成 | `DAIR-V2X/output/spd_single_camera_veh_val_oldstack/result/` 共 `3748` 个结果文件 |
+| 协同基线可运行 | 已完成 | `run_late_fusion_camera_smoke.py` 已跑通，单帧成功输出预测框 |
+| 协同全量评估可输出结果 | 已完成 | `DAIR-V2X/output/spd_late_fusion_camera_val_oldstack/result/` 共 `3316` 个结果文件，日志已输出最终 AP |
+| 非原开发者可按 README 复现样例 | 基本具备 | 已有 `README_stage1.md`，仍建议后续补一版统一命令矩阵 |
+| 单端与协同统一坐标结果输出 | 已完成 | 单端与 cooperative 全量评估均已完成并落盘 |
+
+### 13.2 已验证结果快照
+
+单端 `vehicle-side camera-only val` 已完成：
+
+- 输出目录：`DAIR-V2X/output/spd_single_camera_veh_val_oldstack/`
+- 结果文件数：`3748 / 3748`
+- `3d AP`：`car 0.30 = 17.39`，`0.50 = 4.13`，`0.70 = 0.09`
+- `bev AP`：`car 0.30 = 20.24`，`0.50 = 8.72`，`0.70 = 0.71`
+
+cooperative `late fusion camera-only` 已完成 smoke：
+
+- 数据集 `val` 长度日志：`3316`
+- 已成功构建 `veh` / `inf` 双模型
+- 已成功取到首帧配对：`veh=000870`，`inf=000902`
+- 已成功生成预测框：`pred_boxes=2`
+
+cooperative `late fusion camera-only val` 已完成：
+
+- 后台任务：`job-89977ab10b304fffa92b8a8377ac6e7f`
+- 输出目录：`DAIR-V2X/output/spd_late_fusion_camera_val_oldstack/`
+- 结果文件数：`3316 / 3316`
+- `3d AP`：`car 0.30 = 33.43`，`0.50 = 17.97`，`0.70 = 4.51`
+- `bev AP`：`car 0.30 = 36.64`，`0.50 = 23.10`，`0.70 = 8.93`
+- 平均通信开销：`301.09 Bytes`
 
 ## 14. 风险与应对
 
@@ -333,17 +411,35 @@ B1 完成的判断标准是：
 - 一期以 `LiDAR` 主导
 - 图像接口保留但不过度扩展
 
+### 风险 4: cooperative 全量评估耗时较长
+
+应对：
+
+- 先将 smoke 成功与单端全量结果纳入一期已验证范围
+- cooperative 全量 `val` 完成后，只补充指标与结果文件统计，不再改动路线设计
+- 若全量过程报错，优先做最小兼容补丁，禁止大改上游结构
+
 ## 15. 立即执行清单
 
-下一步执行顺序建议为：
+当前按“已完成 / 进行中 / 待补”拆分如下：
+
+已完成：
 
 1. 准备 `V2X-Seq-SPD` 原始数据
 2. 建立 `DAIR-V2X/data/V2X-Seq-SPD` 数据路径
-3. 运行 `spd2kitti_detection` 转换
-4. 生成完整性报告与 split 清单
-5. 完成 20 组投影/BEV 抽检
-6. 冻结第一版单端和后融合配置
-7. 编写一期 README 与复现脚本
+3. 运行 `spd2kitti_detection` 与 cooperative tracking 转换
+4. 生成完整性报告、sanity 报告与 split 清单
+5. 完成 `20` 组投影 / BEV 抽检
+6. 冻结旧栈一期运行环境与 smoke 脚本
+7. 编写一期 README 与结果摘要
+8. 跑通单端 `camera-only` smoke 与全量 `val`
+9. 跑通 cooperative `late fusion camera-only` smoke
+
+待补：
+
+1. 将单端 / 协同复现命令整理成统一命令矩阵
+2. 补充不少于 `20` 组协同可视化样例
+3. 视需要增加 `infrastructure-only` 与 `LiDAR-only` 基线
 
 ## 16. 结论
 
@@ -352,5 +448,13 @@ B1 完成的判断标准是：
 - 只依赖 `V2X-Seq-SPD`
 - 不依赖 `OPV2V`
 - 先完成真实车路协同主闭环
+
+并且截至当前，B1 已经不只是“路线设计”，而是进入“有真实运行证据的可交付阶段”：
+
+- 数据、转换、完整性和 sanity 检查已落地
+- 单端基线已经完成全量 `val`
+- cooperative 基线已经完成 smoke 与全量 `val`
+
+因此本文档可作为一期阶段性交付基线使用；后续主要是补充复现命令矩阵和更多可视化样例，不需要再重写方案。
 
 这样既保留题目匹配度，也避免在一期阶段把项目推进卡在额外仿真数据的下载和存储上。
